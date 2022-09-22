@@ -35,12 +35,7 @@ public class PlantPlacesController {
 	}
 	
 	@RequestMapping(value = "/start", method = RequestMethod.GET, params={"loyalty=silver"})
-	public String readSilver() {
-		return "start";
-	}
-	
-	@RequestMapping(value = "/start", method = RequestMethod.GET, headers={"content-type=text/json"})
-	public ModelAndView readJSON() {
+	public ModelAndView readSilver() {
 		SpecimenDTO specimenDTO = specimenServiceStub.fetchById(43);
 		specimenDTO.setSpecimenId(83);
 		
@@ -49,6 +44,11 @@ public class PlantPlacesController {
 		modelAndView.addObject("specimenDTO", specimenDTO);
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/start", method = RequestMethod.GET, headers={"content-type=text/json"})
+	public String readJSON() {
+		return "start";
 	}
 	
 	@PostMapping("/start")
